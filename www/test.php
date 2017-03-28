@@ -1,6 +1,6 @@
 <?php
 
-define("DBNAME", "bookstore");
+/*define("DBNAME", "bookstore");
 define("DBUSER", "root");
 define("DBPASS", "vagrant");
 
@@ -13,6 +13,6 @@ $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT);
 
 }catch(PDOException $e){
 	echo $e->getMessage();
-}
+}*/
 
 ?>
