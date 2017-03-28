@@ -16,3 +16,11 @@ $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT);
 }*/
 
 ?>
+
+<form id="register" method="POST" enctype="multipart/form-data">
+	<p>Please upload a file</p>
+	<input type="file" name="pic">
+
+	<input type="submit" name="save">
+	
+</form>
