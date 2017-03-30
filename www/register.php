@@ -13,25 +13,33 @@ if(array_key_exists("register", $_POST)){
 
 	#validate firstname
 	if(empty($_POST["fname"])){
-		$errors[] = "please enter your firstname";
+		$errors["fname"] = "please enter your firstname";
+	}
+
+	if(empty($_POST["lname"])){
+		$errors["lname"] = "please enter your lastname";
+	}
+
+	if(empty($_POST["email"])){
+		$errors["email"] = "please enter your email";
 	}
 
 	if(empty($_POST["password"])){
-		$errors[] = "Please enter your password";
+		$errors["password"] = "Please enter your password";
 	}
 
-	if(empty($_POST["pword"]) || ($_POST["pword"] != $_POST["password"])){
-		$errors[] = "Empty or incorrect password";
+	if($_POST["password"] != $_POST["pword"]){
+		$errors["pword"] = "Empty or incorrect password";
 	}
 
 
 	if(empty($errors)){
 		//do database stuff
-	}else{
-		foreach ($errors as $err) {
-			echo $err;
-		}
-	}
+	}//else{
+		//foreach ($errors as $err) {
+		//	echo $err."<br/>";
+		//}
+	//}
 }
 
 
