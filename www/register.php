@@ -13,8 +13,18 @@ if(array_key_exists("register", $_POST)){
 
 	#validate firstname
 	if(empty($_POST["fname"])){
-		$errors = "please enter your firstname";
+		$errors[] = "please enter your firstname";
 	}
+
+	if(empty($_POST["password"])){
+		$errors[] = "Please enter your password";
+	}
+
+	if(empty($_POST["pword"]) || ($_POST["pword"] != $_POST["password"])){
+		$errors[] = "Empty or incorrect password";
+	}
+
+
 	if(empty($errors)){
 		//do database stuff
 	}else{
