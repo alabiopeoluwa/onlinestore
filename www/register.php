@@ -2,6 +2,9 @@
 		#title
 	$page_title = "Register";
 
+	#load db connection
+	include "includes/db.php";
+
 		#include header
 include "includes/header.php";
 
@@ -40,6 +43,8 @@ if(array_key_exists("register", $_POST)){
 		//	echo $err."<br/>";
 		//}
 	//}
+#eliminate unwanted spaces from values in the $_POST array
+		$clean = array_map("trim", $_POST);
 }
 
 
