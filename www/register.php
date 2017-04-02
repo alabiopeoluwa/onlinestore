@@ -45,24 +45,11 @@ if(array_key_exists("register", $_POST)){
 	#eliminate unwanted spaces from values in the $_POST array
 		$clean = array_map("trim", $_POST);
 
-	#hash the password
-		$hash = password_hash($clean["password"], PASSWORD_BCRYPT);
-	
-	#insert data
-		$stmt = $pdo->prepare("INSERT INTO admin(firstname, lastname, email, hash) VALUES(:fn, :ln, :e, :h)");
-
-	#bind params
-		$data = [
-			":fn" => $clean["fname"],
-			":ln" => $clean["lname"],
-			":e" => $clean["email"],
-			":h" => $hash
-			];
-
-			$stmt->execute($data);
+	#register admin
+	doAdminRegister($conn, $clean);
 
 
-		}//else{
+		} //else{
 		//foreach ($errors as $err) {
 		//	echo $err."<br/>";
 		//}
