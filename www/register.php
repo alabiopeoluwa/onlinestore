@@ -30,6 +30,10 @@ if(array_key_exists("register", $_POST)){
 		$errors["email"] = "please enter your email";
 	}
 
+	if(doesEmailExist($conn, $_POST["email"])){
+		$errors["email"] = "email already exists";
+	}
+
 	if(empty($_POST["password"])){
 		$errors["password"] = "Please enter your password";
 	}
