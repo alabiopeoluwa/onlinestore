@@ -1,7 +1,7 @@
 <?php
 	session_start();
 		#title
-	$page_title = "Login";
+	$page_title = "Admin Login";
 
 		#include header
 include "includes/header.php";
@@ -19,7 +19,7 @@ include "includes/functions.php";
 		}
 
 		if(empty($_POST["password"])){
-			$errors["password"] = "pelase enter your password";
+			$errors["password"] = "please enter your password";
 		}
 
 		if(empty($errors)){
