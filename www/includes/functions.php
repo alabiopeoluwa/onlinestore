@@ -1,10 +1,10 @@
 <?php
-	function doAdminRegister($dbconn, $input) {
+	function doAdminRegister($pdo, $input) {
 		#hast the password
 		$hash = password_hash($input["password"], PASSWORD_BCRYPT);
 
 		#insert data
-		$stmt = $dbconn->prepare("INSERT INTO admin(firstname, lastname, email, hash) VALUES(:fn, :ln, :e, :h)");
+		$stmt = $pdo->prepare("INSERT INTO admin(firstname, lastname, email, hash) VALUES(:fn, :ln, :e, :h)");
 
 		#bind params
 		$data = [
@@ -17,9 +17,18 @@
 		$stmt->execute($data);
 	}
 
-	function doesEmailExist($dbconn, $email){
+	function displayErrors($open, $name){
+		$result = "";
+
+		if(isset($open[$name])){
+			$result = "<span class='err'>".$open[$name]."</span>";
+		}
+		return $result;
+	}
+
+	function doesEmailExist($pdo, $email){
 		$result = false;
-		$stmt = $dbconn->prepare("SELECT email FROM admin WHERE email=:e");
+		$stmt = $pdo->prepare("SELECT email FROM admin WHERE email=:e");
 
 		#bind params
 		$stmt->bindParam(":e", $email);

@@ -13,9 +13,9 @@
 
 
 
-if(array_key_exists("register", $_POST)){
 	#cache errors
 	$errors = [];
+if(array_key_exists("register", $_POST)){
 
 	#validate firstname
 	if(empty($_POST["fname"])){
@@ -30,7 +30,7 @@ if(array_key_exists("register", $_POST)){
 		$errors["email"] = "please enter your email";
 	}
 
-	if(doesEmailExist($conn, $_POST["email"])){
+	if(doesEmailExist($pdo, $_POST["email"])){
 		$errors["email"] = "email already exists";
 	}
 
@@ -50,7 +50,7 @@ if(array_key_exists("register", $_POST)){
 		$clean = array_map("trim", $_POST);
 
 	#register admin
-	doAdminRegister($conn, $clean);
+	doAdminRegister($pdo, $clean);
 
 
 		} //else{
@@ -69,14 +69,16 @@ if(array_key_exists("register", $_POST)){
 		<form id="register"  action ="register.php" method ="POST">
 			<div>
 				<?php
-					if(isset($errors["fname"])) {echo '<span class="err">'. $errors["fname"]. '</span>';}
+					$one =displayErrors($errors, "fname");
+					echo $one;
 				?>
 				<label>first name:</label>
 				<input type="text" name="fname" placeholder="first name">
 			</div>
 			<div>
 				<?php
-					if(isset($errors["lname"])) {echo '<span class="err">'. $errors["lname"]. '</span>';}
+					$two =displayErrors($errors, "lname");
+					echo $two;
 				?>
 				<label>last name:</label>	
 				<input type="text" name="lname" placeholder="last name">
@@ -84,14 +86,16 @@ if(array_key_exists("register", $_POST)){
 
 			<div>
 				<?php
-					if(isset($errors["email"])) {echo '<span class="err">'. $errors["email"]. '</span>';}
+					$three =displayErrors($errors, "email");
+					echo $three;
 				?>
 				<label>email:</label>
 				<input type="text" name="email" placeholder="email">
 			</div>
 			<div>
 				<?php
-					if(isset($errors["password"])) {echo '<span class="err">'. $errors["password"]. '</span>';}
+					$four =displayErrors($errors, "password");
+					echo $four;
 				?>
 				<label>password:</label>
 				<input type="password" name="password" placeholder="password">
@@ -99,7 +103,8 @@ if(array_key_exists("register", $_POST)){
  
 			<div>
 				<?php
-					if(isset($errors["pword"])) {echo '<span class="err">'. $errors["pword"]. '</span>';}
+					$five =displayErrors($errors, "pword");
+					echo $five;
 				?>
 				<label>confirm password:</label>	
 				<input type="password" name="pword" placeholder="password">

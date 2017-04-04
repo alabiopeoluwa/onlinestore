@@ -1,10 +1,37 @@
 <?php
+	session_start();
 		#title
 	$page_title = "Login";
 
 		#include header
 include "includes/header.php";
 
+include "includes/db.php";
+
+include "includes/functions.php";
+
+	if(array_key_exists("login", $_POST)){
+		#error caching
+		$errors = [];
+
+		if(empty($_POST["email"])){
+			$errors["email"] = "please enter your email";
+		}
+
+		if(empty($_POST["password"])){
+			$errors["password"] = "pelase enter your password";
+		}
+
+		if(empty($errors)){
+			#select from database
+
+			#clean unwanted values in the $_POST array
+			$clean = array_map("trim", $_POST);
+
+			adminLogin($conn, $clean);
+		}
+
+	}
 
 ?>
 
@@ -22,7 +49,7 @@ include "includes/header.php";
 				<input type="password" name="password" placeholder="password">
 			</div>
 
-			<input type="submit" name="register" value="login">
+			<input type="submit" name="login" value="login">
 		</form>
 
 		<h4 class="jumpto">Don't have an account? <a href="register.php">register</a></h4>
